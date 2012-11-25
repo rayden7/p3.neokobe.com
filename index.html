@@ -748,7 +748,7 @@ $(document).ready(function() {
             case 0 :
                 //alert('BATTLE: draw!');
                 if (DEBUG) console.log('BATTLE: compared: ['+compared+'] opponent card ['+opponentCard.toString()+'], player card ['+playerCard.toString()+'], DRAW, calling war()');
-                war();
+                index();
                 break;
             // opponent wins
             case 1 :
@@ -834,6 +834,16 @@ $(document).ready(function() {
         <p>This is a JavaScript and <a href="http://jquery.com/" target="_blank">jQuery</a> implementation of the
             classic child's card game, War.  I wrote it to follow the basic rules of the game as written
             <a href="http://www.pagat.com/war/war.html" target="_blank">here</a> (following the <i></i>"War for two players"</i> rules, using draw variation 1).</p>
+        <p>JavaScript libraries used in this project include:
+            <ul>
+                <li><a href="http://jquery.org" target="_blank">jQuery</a></li>
+                <li><a href="http://jquerytools.org/" target="_blank">jQuery Tools</a></li>
+                <li><a href="http://jqueryui.com/" target="_blank">jQuery UI</a></li>
+                <li><a href="http://underscorejs.org/" target="_blank">Underscore.js</a></li>
+                <li><a href="http://handlebarsjs.com/" target="_blank">Handlebars.js</a></li>
+                <li><a href="http://www.brainjar.com/js/cards/" target="_blank">Brainjar's JavaScript Card Objects (modified)</a></li>
+            </ul>
+        </p>
     </header>
 
     <!-- Opponent's area -->
