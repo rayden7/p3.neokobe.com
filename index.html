@@ -335,7 +335,7 @@ $(document).ready(function() {
 
     function newDeck() {
 
-        // use a pre-defined deck so that we can debug "war" conditions, card comparisions, etc.
+        // use a pre-defined deck so that we can debug "war" conditions, card comparisons, etc.
         if (DEBUG) {
             var debugCards = new Array(
                                         new Card("A","D"),  // first player card
@@ -835,15 +835,21 @@ $(document).ready(function() {
 <body>
 
     <header>
-        <h2>WAR : The Card Game</h2>
+        <h1>WAR : The Card Game</h1>
         <p>This is a JavaScript and <a href="http://jquery.com/" target="_blank">jQuery</a> implementation of the
             classic child's card game, War.  I wrote it to follow the basic rules of the game as written
             <a href="http://www.pagat.com/war/war.html" target="_blank">here</a> (following the <i></i>"War for two players"</i> rules, using draw variation 1).</p>
         <p>JavaScript libraries used in this project include:
             <ul>
                 <li><a href="http://jquery.org" target="_blank">jQuery</a></li>
+                <!--
+                I was going to make more extensive use of these libraries, but
+                I ran out of time and did not find a use for them before the deadline
+                -->
+                <!--
                 <li><a href="http://jquerytools.org/" target="_blank">jQuery Tools</a></li>
                 <li><a href="http://jqueryui.com/" target="_blank">jQuery UI</a></li>
+                -->
                 <li><a href="http://underscorejs.org/" target="_blank">Underscore.js</a></li>
                 <li><a href="http://handlebarsjs.com/" target="_blank">Handlebars.js</a></li>
                 <li><a href="http://www.brainjar.com/js/cards/" target="_blank">Brainjar's JavaScript Card Objects (modified)</a></li>
@@ -859,10 +865,15 @@ $(document).ready(function() {
 
     <!-- Battlefield area -->
     <div id="battlefield" class="playingField">
-        <div class="textBox name">Battlefield</div>
         <div id="battlefieldCards" class="cardArea">
-            <div id="opponentBattlefield"></div>
-            <div id="playerBattlefield"></div>
+            <div class="leftColumn">
+                <div id="opponentBattlefieldTitle">Opponent Battle Cards</div>
+                <div id="opponentBattlefield"></div>
+            </div>
+            <div class="rightColumn">
+                <div id="playerBattlefieldTitle">Player Battle Cards</div>
+                <div id="playerBattlefield"></div>
+            </div>
         </div>
     </div>
 
@@ -880,6 +891,10 @@ $(document).ready(function() {
             <br />
         </div>
     </form>
+
+    <footer>
+        <h3>&copy; 2012 David Killeffer.  All Rights Reserved.</h3>
+    </footer>
 
 </body>
 </html>
