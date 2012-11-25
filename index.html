@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 <head>
-<title>CSCI-E 75: PS3 - WAR - V002</title>
+<title>CSCI-E 75: PS3 - WAR, The Card Game You Played As A Kid</title>
 <link rel="stylesheet" type="text/css" href="css/war-cards.css" />
 
 <!--<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>-->
@@ -647,7 +647,12 @@ $(document).ready(function() {
         //var playerFirstCardDiv = $(playerCardsDivId).children('div').first().remove();
         //if (DEBUG) console.log('playerFirstCardDiv: \n\n' + playerFirstCardDiv.html());
 
-        alert('inside cardComparison\n\n' +
+
+
+        ////////////////// TODO: create a tooltip, or a notification area and inform the player of the winner //////////
+
+
+        if (DEBUG) console.log('inside cardComparison\n\n' +
               'opponentCard: ['+opponentCard.toString()+']\n' +
               'playerCard: ['+playerCard.toString()+']\n' +
               'compared: ['+compared+']\n\n'
@@ -748,7 +753,7 @@ $(document).ready(function() {
             case 0 :
                 //alert('BATTLE: draw!');
                 if (DEBUG) console.log('BATTLE: compared: ['+compared+'] opponent card ['+opponentCard.toString()+'], player card ['+playerCard.toString()+'], DRAW, calling war()');
-                index();
+                war();
                 break;
             // opponent wins
             case 1 :
