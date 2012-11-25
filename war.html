@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+<title>CSCI-E 75: PS3 - WAR - V002</title>
+<link rel="stylesheet" type="text/css" href="css/war-cards.css" />
+
+<!--<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>-->
+<!--<script type="text/javascript" src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>-->
+<!--<script type="text/javascript" src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>-->
+
+<!-- see http://code.jquery.com/ for downloadable local copies -->
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.tools.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+
+<script type="text/javascript" src="js/underscore-min.js"></script>
+<script type="text/javascript" src="js/handlebars-1.0.rc.1.js"></script>
+<script type="text/javascript" src="js/war-cards.js"></script>
+
+<!-- Handlebars templates for card divs -->
+<script id="card-template-2" type="text/x-handlebars-template">
+    <!-- {{cardName}} -->
+    <div class="card">
+        <!--<div class="cardback {{cardColor}}">-->
+        <div class="cardfront {{cardColor}}">
+            <div class="index">{{cardRank}}<br />{{cardSuitSymbol}}</div>
+            <div class="spotB2">{{cardSuitSymbol}}</div>
+            <div class="spotB4">{{cardSuitSymbol}}</div>
+        </div>
+    </div>
+</script>
+
+<script id="card-template-3" type="text/x-handlebars-template">
+    <!-- {{cardName}} -->
+    <div class="card">
+        <!--<div class="cardback {{cardColor}}">-->
+        <div class="cardfront {{cardColor}}">
+            <div class="index">{{cardRank}}<br />{{cardSuitSymbol}}</div>
+            <div class="spotA1">{{cardSuitSymbol}}</div>
+            <div class="spotB3">{{cardSuitSymbol}}</div>
+            <div class="spotC5">{{cardSuitSymbol}}</div>
+        </div>
+    </div>
+</script>
+
+<script id="card-template-4" type="text/x-handlebars-template">
+    <!-- {{cardName}} -->
+    <div class="card">
+        <!--<div class="cardback {{cardColor}}">-->
+        <div class="cardfront {{cardColor}}">
+            <div class="index">{{cardRank}}<br />{{cardSuitSymbol}}</div>
+            <div class="spotA1">{{cardSuitSymbol}}</div>
+            <div class="spotA5">{{cardSuitSymbol}}</div>
+            <div class="spotC1">{{cardSuitSymbol}}</div>
+            <div class="spotC5">{{cardSuitSymbol}}</div>
+        </div>
+    </div>
+</script>
+
+<script id="card-template-5" type="text/x-handlebars-template">
+    <!-- {{cardName}} -->
+    <div class="card">
+        <!--<div class="cardback {{cardColor}}">-->
+        <div class="cardfront {{cardColor}}">
+            <div class="index">{{cardRank}}<br />{{cardSuitSymbol}}</div>
+            <div class="spotA1">{{cardSuitSymbol}}</div>
+            <div class="spotA5">{{cardSuitSymbol}}</div>
+            <div class="spotB3">{{cardSuitSymbol}}</div>
+            <div class="spotC1">{{cardSuitSymbol}}</div>
+            <div class="spotC5">{{cardSuitSymbol}}</div>
+        </div>
+    </div>
+</script>
+
+<script id="card-template-6" type="text/x-handlebars-template">
+    <!-- {{cardName}} -->
+    <div class="card">
+        <!--<div class="cardback {{cardColor}}">-->
+        <div class="cardfront {{cardColor}}">
+            <div class="index">{{cardRank}}<br />{{cardSuitSymbol}}</div>
+            <div class="spotA1">{{cardSuitSymbol}}</div>
+            <div class="spotA3">{{cardSuitSymbol}}</div>
+            <div class="spotA5">{{cardSuitSymbol}}</div>
+            <div class="spotC1">{{cardSuitSymbol}}</div>
+            <div class="spotC3">{{cardSuitSymbol}}</div>
+            <div class="spotC5">{{cardSuitSymbol}}</div>
+        </div>
+    </div>
+</script>
+
+<script id="card-template-7" type="text/x-handlebars-template">
+    <!-- {{cardName}} -->
+    <div class="card">
+        <!--<div class="cardback {{cardColor}}">-->
+        <div class="cardfront {{cardColor}}">
+            <div class="index">{{cardRank}}<br />{{cardSuitSymbol}}</div>
+            <div class="spotA1">{{cardSuitSymbol}}</div>
+            <div class="spotA3">{{cardSuitSymbol}}</div>
+            <div class="spotA5">{{cardSuitSymbol}}</div>
+            <div class="spotB3">{{cardSuitSymbol}}</div>
+            <div class="spotC1">{{cardSuitSymbol}}</div>
+            <div class="spotC3">{{cardSuitSymbol}}</div>
+            <div class="spotC5">{{cardSuitSymbol}}</div>
+        </div>
+    </div>
+</script>
+
+<script id="card-template-8" type="text/x-handlebars-template">
+    <!-- {{cardName}} -->
+    <div class="card">
+        <!--<div class="cardback {{cardColor}}">-->
+        <div class="cardfront {{cardColor}}">
+            <div class="index">{{cardRank}}<br />{{cardSuitSymbol}}</div>
+            <div class="spotA1">{{cardSuitSymbol}}</div>
+            <div class="spotA2">{{cardSuitSymbol}}</div>
+            <div class="spotA4">{{cardSuitSymbol}}</div>
+            <div class="spotA5">{{cardSuitSymbol}}</div>
+            <div class="spotC1">{{cardSuitSymbol}}</div>
+            <div class="spotC2">{{cardSuitSymbol}}</div>
+            <div class="spotC4">{{cardSuitSymbol}}</div>
+            <div class="spotC5">{{cardSuitSymbol}}</div>
+        </div>
+    </div>
+</script>
+
+<script id="card-template-9" type="text/x-handlebars-template">
+    <!-- {{cardName}} -->
+    <div class="card">
+        <!--<div class="cardback {{cardColor}}">-->
+        <div class="cardfront {{cardColor}}">
+            <div class="index">{{cardRank}}<br />{{cardSuitSymbol}}</div>
+            <div class="spotA1">{{cardSuitSymbol}}</div>
+            <div class="spotA2">{{cardSuitSymbol}}</div>
+            <div class="spotA4">{{cardSuitSymbol}}</div>
+            <div class="spotA5">{{cardSuitSymbol}}</div>
+            <div class="spotB3">{{cardSuitSymbol}}</div>
+            <div class="spotC1">{{cardSuitSymbol}}</div>
+            <div class="spotC2">{{cardSuitSymbol}}</div>
+            <div class="spotC4">{{cardSuitSymbol}}</div>
+            <div class="spotC5">{{cardSuitSymbol}}</div>
+        </div>
+    </div>
+</script>
+
+<script id="card-template-10" type="text/x-handlebars-template">
+    <!-- {{cardName}} -->
+    <div class="card">
+        <!--<div class="cardback {{cardColor}}">-->
+        <div class="cardfront {{cardColor}}">
+            <div class="index">{{cardRank}}<br />{{cardSuitSymbol}}</div>
+            <div class="spotA1">{{cardSuitSymbol}}</div>
+            <div class="spotA2">{{cardSuitSymbol}}</div>
+            <div class="spotA4">{{cardSuitSymbol}}</div>
+            <div class="spotA5">{{cardSuitSymbol}}</div>
+            <div class="spotB2">{{cardSuitSymbol}}</div>
+            <div class="spotB4">{{cardSuitSymbol}}</div>
+            <div class="spotC1">{{cardSuitSymbol}}</div>
+            <div class="spotC2">{{cardSuitSymbol}}</div>
+            <div class="spotC4">{{cardSuitSymbol}}</div>
+            <div class="spotC5">{{cardSuitSymbol}}</div>
+        </div>
+    </div>
+</script>
+
+<script id="card-template-J" type="text/x-handlebars-template">
+    <!-- {{cardName}} -->
+    <div class="card">
+        <!--<div class="cardback {{cardColor}}">-->
+        <div class="cardfront {{cardColor}}">
+            <div class="index">{{cardRank}}<br />{{cardSuitSymbol}}</div>
+            <img class="face" src="graphics/jack.gif" alt="{{cardName}}" />
+            <div class="spotA1">{{cardSuitSymbol}}</div>
+            <div class="spotC5">{{cardSuitSymbol}}</div>
+        </div>
+    </div>
+</script>
+
+<script id="card-template-Q" type="text/x-handlebars-template">
+    <!-- {{cardName}} -->
+    <div class="card">
+        <!--<div class="cardback {{cardColor}}">-->
+        <div class="cardfront {{cardColor}}">
+            <div class="index">{{cardRank}}<br />{{cardSuitSymbol}}</div>
+            <img class="face" src="graphics/queen.gif" alt="{{cardName}}" />
+            <div class="spotA1">{{cardSuitSymbol}}</div>
+            <div class="spotC5">{{cardSuitSymbol}}</div>
+        </div>
+    </div>
+</script>
+
+<script id="card-template-K" type="text/x-handlebars-template">
+    <!-- {{cardName}} -->
+    <div class="card">
+        <!--<div class="cardback {{cardColor}}">-->
+        <div class="cardfront {{cardColor}}">
+            <div class="index">{{cardRank}}<br />{{cardSuitSymbol}}</div>
+            <img class="face" src="graphics/king.gif" alt="{{cardName}}" />
+            <div class="spotA1">{{cardSuitSymbol}}</div>
+            <div class="spotC5">{{cardSuitSymbol}}</div>
+        </div>
+    </div>
+</script>
+
+<script id="card-template-A" type="text/x-handlebars-template">
+    <!-- {{cardName}} -->
+    <div class="card">
+        <!--<div class="cardback {{cardColor}}">-->
+        <div class="cardfront {{cardColor}}">
+            <div class="index">{{cardRank}}<br />{{cardSuitSymbol}}</div>
+            <div class="spotB3 aceicon">{{cardSuitSymbol}}</div>
+        </div>
+    </div>
+</script>
+
+<script type="text/javascript">
+//<![CDATA[
+
+// ============================================================================
+// WAR card game
+// ============================================================================
+//
+// Follows rules for "War for two players" on
+// http://www.pagat.com/war/war.html and using variation #1 for when a
+// player runs out of cards during a war (e.g., "If [a player doesn't]
+// have enough cards to complete the war, [that player will] lose"
+// ============================================================================
+
+
+//
+// CSS card flipping animation:
+//     http://css3.bradshawenterprises.com/flip/
+//
+// jQuery card flipping animation flassback:
+//     http://lab.smashup.it/flip
+//
+// http://davidwalsh.name/css-flip
+//
+
+
+
+$(document).ready(function() {
+
+    // allow debugging by passing "DEBUG=1" to the page in the query string
+    var DEBUG = false;
+    if ( window.location.href.indexOf("DEBUG=1") > 0) {
+        DEBUG = true;
+        if (DEBUG) alert ('Turning on debugging - check the console log for debugging information.');
+    }
+
+    var numPacks      =    1;
+    var numShuffles   =   10;
+    //var dealTimeDelay =  750;
+
+    // Globals
+    var deck;
+    var opponent;
+    var player;
+    var playerStack, opponentStack, playerWarStack, opponentWarStack;
+    //var numCardsPerPlayer = 26;
+    //var numCardsPerPlayer = 2;
+    var numCardsPerPlayer = 4;
+
+    // HTML element ID names
+    var playerCardsDivId         = "#playerCards";
+    var opponentCardsDivId       = "#opponentCards";
+    var opponentBattlefieldDivId = "#opponentBattlefield";
+    var playerBattlefieldDivId   = "#playerBattlefield";
+    var battleButtonId           = "#battleButton";
+    var newGameButtonId          = "#newGameButton";
+
+
+    // start a game when the page has finished loading
+    initGame();
+
+    function initGame() {
+
+        // Initialize card deck.
+        deck = new Stack();
+        newDeck();
+
+        playerStack      = new Stack();
+        opponentStack    = new Stack();
+        playerWarStack   = new Stack();
+        opponentWarStack = new Stack();
+
+        // give cards to the player and the computer opponent
+        var playerCards = new Array( numCardsPerPlayer );
+        var opponentCards = new Array( numCardsPerPlayer );
+
+        var k = numCardsPerPlayer;
+
+        while (k > 0 && deck.cardCount() > 0) {
+            playerCards.push( deck.deal() );
+            opponentCards.push( deck.deal() );
+            k--;
+        }
+
+        var playerCardStrings = "";
+        var opponentCardStrings = "";
+
+        _.each(playerCards, function(card) {
+            playerCardStrings += card.toString() + '\n';
+            playerStack.addCard(card);
+            $(playerCardsDivId).append( card.createNode() );
+        });
+        _.each(opponentCards, function(card) {
+            opponentCardStrings += card.toString() + '\n';
+            opponentStack.addCard(card);
+            $(opponentCardsDivId).append( card.createNode() );
+        });
+
+        if (DEBUG) {
+            console.log('Your opponent was dealt these cards: \n\n' + opponentCardStrings);
+            console.log('You were dealt these cards: \n\n' + playerCardStrings);
+            console.log('opponentStack has [' + opponentStack.cardCount() +'] cards\nplayerStack has [' + playerStack.cardCount() +'] cards');
+        }
+    }
+
+    // remove all cards from the board, and then start a new game
+    function newGame() {
+        if (DEBUG) console.log('inside newGame(), removing cards from board...');
+        $(opponentCardsDivId).children().remove();
+        $(opponentBattlefieldDivId).children().remove();
+        $(playerBattlefieldDivId).children().remove();
+        $(playerCardsDivId).children().remove();
+        //if (DEBUG) console.log('about to wait a bit before starting the next game...');
+        //window.setTimeout(function(){initGame()},1500);
+        initGame();
+    }
+
+
+    // ----------------------------------------------------------------------------
+    // Game functions.
+    // ----------------------------------------------------------------------------
+
+    function newDeck() {
+
+        // use a pre-defined deck so that we can debug "war" conditions, card comparisions, etc.
+        if (DEBUG) {
+            var debugCards = new Array(
+                                        new Card("A","D"),  // first player card
+                                        new Card("A","H"),  // first opponent card
+                                        new Card("K","D"),  // second player card
+                                        new Card("K","H"),  // second opponent card
+                                        new Card("Q","D"),  // etc. ...
+                                        new Card("Q","H"),
+                                        new Card("J","D"),
+                                        new Card("J","H"),
+                                        new Card("10","D"),
+                                        new Card("10","H"),
+                                        new Card("9","D"),
+                                        new Card("9","H"),
+                                        new Card("8","D"),
+                                        new Card("8","H"),
+                                        new Card("7","D"),
+                                        new Card("7","H"),
+                                        new Card("6","D"),
+                                        new Card("6","H"),
+                                        new Card("5","D"),
+                                        new Card("5","H"),
+                                        new Card("4","D"),
+                                        new Card("4","H"),
+                                        new Card("3","D"),
+                                        new Card("3","H"),
+                                        new Card("2","D"),
+                                        new Card("2","H")
+                                     );
+            deck.makeDebugDeck(debugCards);
+            console.log('built debugging deck - using cards: \n\n' + deck.toString() );
+        } else {
+            // Create a deck
+            deck.makeDeck(numPacks);
+            deck.shuffle(numShuffles);
+        }
+    }
+
+
+    function detectEndgame() {
+
+
+        cardStackReport();
+
+
+        var message = "";
+        // PLAYER WINS
+        if ( opponentStack.cardCount() == 0 && playerStack.cardCount() >= (numCardsPerPlayer * 2) )
+            message = 'Congratulations, YOU WIN! Would you like to play again?';
+        // OPPONENT WINS
+        else if (opponentStack.cardCount() >= (numCardsPerPlayer * 2) && playerStack.cardCount() == 0 )
+            message = 'Sorry YOU LOST. Would you like to play again?';
+        // DRAW!
+        else if (opponentStack.cardCount() == 0 && playerStack.cardCount() == 0 )
+            message = 'DRAW!  You tied with your opponent. Would you like to play again?';
+
+        if (DEBUG) console.log('numCardsPerPlayer: ['+numCardsPerPlayer+']\n' +
+                               'opponentStack.cardCount(): ['+opponentStack.cardCount()+']\n' +
+                               'playerStack.cardCount(): ['+playerStack.cardCount()+']\n' +
+                               'message: ['+message+']\n' +
+                               'message.length: ['+message.length+']');
+
+        // game is over, so show the appropriate message and if the player wants to play again, start a new game
+        if (message.length > 0) {
+            var playAgain = window.confirm(message);
+            if (playAgain) newGame();
+        }
+    }
+
+
+
+    /**
+     * In a war, the player and opponent both drew cards of equal rank, and so to determine who the winner is,
+     */
+    function war() {
+
+        if (DEBUG) {
+            cardStacksReport();
+            console.log('Battle tied, moving to a WAR!\n\n' +
+                        'called war(), need to determine how the war goes based on how many cards each party has\n\n' +
+                        'opponentStack.cardCount(): ['+opponentStack.cardCount()+']\n' +
+                        'playerStack.cardCount(): ['+playerStack.cardCount()+']');
+        }
+
+        //
+        // this version of the War card game follows the rules of War for 2 players
+        // using the first variant specified here: http://www.pagat.com/war/war.html#two
+        //
+
+        // player has at least enough cards to conduct a war, but opponent
+        // does not, so the game is over and the player wins
+        if ( opponentStack.cardCount() == 0 && playerStack.cardCount() >= 2) {
+            alert('PLAYER WINS GAME: opponent does not have enough cards to continue the war, so opponent loses');
+            detectEndgame();
+        }
+        // opponent has at least enough cards to conduct a war, but player
+        // does not, so the game is over and the opponent wins
+        else if ( playerStack.cardCount() == 0 && opponentStack.cardCount() >= 2) {
+            alert('OPPONENT WINS GAME: player does not have enough cards to continue the war, so player loses');
+            detectEndgame();
+        }
+        // DRAW - both player and opponent do not have enough cards to continue - game ends in a draw
+        else if ( playerStack.cardCount() == 0 && opponentStack.cardCount() == 0) {
+            alert('DRAW: both player and opponent do not hve enough cards to conduct the war');
+            detectEndgame();
+        }
+
+
+        // both players have enough cards to conduct a war, so continue the war
+        if (DEBUG) console.log('both players have enough cards to conduct the war, so CONTINUE THE WAR');
+
+        if ( playerStack.cardCount() >= 2 && opponentStack.cardCount() >= 2) {
+
+            var opponentCardFacedown = opponentStack.draw(0);
+            var playerCardFacedown   = playerStack.draw(0);
+
+            opponentWarStack.addCard( opponentCardFacedown );
+            playerWarStack.addCard( playerCardFacedown );
+
+            var opponentCardFacedownDiv = $(opponentCardsDivId).children('div').first().remove();
+            var playerCardFacedownDiv   = $(playerCardsDivId).children('div').first().remove();
+
+
+            $(opponentCardFacedownDiv).children('div').first().toggleClass('cardfront cardback');
+            $(opponentBattlefieldDivId).append( opponentCardFacedownDiv );
+
+            $(playerCardFacedownDiv).children('div').first().toggleClass('cardfront cardback');
+            $(playerBattlefieldDivId).append( playerCardFacedownDiv );
+
+            // get the opponent's first card and the player's first card
+            if (DEBUG) console.log('opponent facedown card drawn: [' + opponentCardFacedown.toString() +']\n' +
+                                   'opponentCardFacedownDiv: \n\n' + opponentCardFacedownDiv.html() + '\n\n' +
+                                   'player facedown card drawn: ['+playerCardFacedown.toString() +']\n' +
+                                   'playerCardFacedownDiv: \n\n' + playerCardFacedownDiv.html() + '\n\n' +
+                                   'next calling drawCards() again...'
+                                  );
+
+            window.setTimeout(function(){ drawCards(); }, 1500);
+        }
+        //
+        else if ( playerStack.cardCount() >= 2 && opponentStack.cardCount() <= 2) {
+            if (DEBUG) console.log('playerStack.cardCount(): [' + playerStack.cardCount() +']\n' +
+                                   'opponentStack.cardCount(): [' + opponentStack.cardCount() + ']\n\n' +
+                                   'opponent does not have enough cards to continue the war - PLAYER WINS'
+                                  );
+        }
+        //
+        else if ( playerStack.cardCount() <= 2 && opponentStack.cardCount() >= 2) {
+            if (DEBUG) console.log('playerStack.cardCount(): [' + playerStack.cardCount() +']\n' +
+                                   'opponentStack.cardCount(): [' + opponentStack.cardCount() + ']\n\n' +
+                                   'player does not have enough cards to continue the war - OPPONENT WINS'
+                                  );
+        }
+        //
+        else if ( playerStack.cardCount() <= 2 && opponentStack.cardCount() <= 2) {
+            if (DEBUG) console.log('playerStack.cardCount(): [' + playerStack.cardCount() +']\n' +
+                                   'opponentStack.cardCount(): [' + opponentStack.cardCount() + ']\n\n' +
+                                   'NEITHER player nor opponent has enough cards to continue the war - GAME ENDS IN A DRAW'
+                                  );
+        }
+
+        //detectEndgame();
+
+    }
+
+
+
+    function drawCards() {
+
+        //detectEndgame();
+        window.setTimeout(function(){detectEndgame();},1500);
+
+        // get the opponent's first card and the player's first card
+        if (DEBUG) console.log('just clicked BATTLE button...\n\n' +
+                               'opponentStack has [' + opponentStack.cardCount() +'] cards\n' +
+                               'opponentStack: [' + opponentStack.toString() +']\n\n' +
+                               'playerStack has [' + playerStack.cardCount() +'] cards\n' +
+                               'playerStack: ['+playerStack.toString()+']');
+
+        var opponentCard = opponentStack.draw(0);
+        var playerCard = playerStack.draw(0);
+
+        opponentWarStack.addCard(opponentCard);
+        playerWarStack.addCard(playerCard);
+
+
+        // get the opponent's first card and the player's first card
+        if (DEBUG) console.log('first opponent card drawn: [' + opponentCard.toString() +']\n' +
+                               'first player card drawn: ['+playerCard.toString() +']');
+
+        // WORKS, but would rather animate the card and move it to the middle battlefield
+
+        //var opponentFirstCardDiv = $('#opponentCards').children('div').first().remove();
+        var opponentFirstCardDiv = $(opponentCardsDivId).children('div').first().remove();
+        if (DEBUG) console.log('opponentFirstCardDiv: \n\n' + opponentFirstCardDiv.html());
+        //$(opponentFirstCardDiv).children('div').first().toggleClass('cardback cardfront');
+        //if (DEBUG) alert('opponentFirstCardDiv after class toggle: \n\n' + opponentFirstCardDiv.html());
+        //$('#opponentBattlefield').append( opponentFirstCardDiv );
+        $(opponentBattlefieldDivId).append( opponentFirstCardDiv );
+
+        //var playerFirstCardDiv = $('#playerCards').children('div').first().remove();
+        var playerFirstCardDiv = $(playerCardsDivId).children('div').first().remove();
+        if (DEBUG) console.log('playerFirstCardDiv: \n\n' + playerFirstCardDiv.html());
+        //$(playerFirstCardDiv).children('div').first().toggleClass('cardback cardfront');
+        //if (DEBUG) alert('opponentFirstCardDiv after class toggle: \n\n' + opponentFirstCardDiv.html());
+        //$('#playerBattlefield').append( playerFirstCardDiv );
+        $(playerBattlefieldDivId).append( playerFirstCardDiv );
+
+        //window.setTimeout("cardComparison()", 2000);
+        window.setTimeout(function(){cardComparison(opponentCard, playerCard);}, 2000);
+
+        //function cardComparison(opponentCard, playerCard) {
+
+
+        /*
+        // compare the opponent and player cards to determine whose is higher (or if they are equal)
+        var compared = opponentCard.compareTo(playerCard);
+
+        //if (DEBUG) alert('compared cards value: ['+compared+']');
+        switch (compared) {
+            case -1 :
+                if (DEBUG) console.log('BATTLE: compared: ['+compared+'] opponent card ['+opponentCard.toString()+'], player card ['+playerCard.toString()+'], PLAYER WIN');
+                //$(opponentFirstCardDiv).children('div').first().toggleClass('cardfront cardback');
+                //$(playerFirstCardDiv).children('div').first().toggleClass('cardfront cardback');
+                //$('#playerCards').append( opponentFirstCardDiv );
+                //$('#playerCards').append( playerFirstCardDiv );
+                $(playerCardsDivId).append( opponentFirstCardDiv );
+                $(playerCardsDivId).append( playerFirstCardDiv );
+                //playerStack.addCard(opponentCard);
+                //playerStack.addCard(playerCard);
+                playerStack.combine(opponentWarStack);
+                playerStack.combine(playerWarStack);
+                opponentWarStack.clear();
+                playerWarStack.clear();
+
+                //if (DEBUG) alert('AFTER THE WAR - player won, card stack summary:\n' +
+                if (DEBUG) console.log('AFTER THE WAR - player won, card stack summary:\n' +
+                                 'opponentStack: '    + opponentStack.toString()    + '\n\n' +
+                                 'opponentWarStack: ' + opponentWarStack.toString() + '\n\n' +
+                                 'playerStack: '      + playerStack.toString()      + '\n\n' +
+                                 'playerWarStack: '   + playerWarStack.toString()
+                                );
+                break;
+            case 0 :
+                if (DEBUG) console.log('BATTLE: compared: ['+compared+'] opponent card ['+opponentCard.toString()+'], player card ['+playerCard.toString()+'], DRAW, calling war()');
+                war();
+                break;
+            case 1 :
+                if (DEBUG) console.log('BATTLE: compared: ['+compared+'] opponent card ['+opponentCard.toString()+'], player card ['+playerCard.toString()+'], PLAYER LOSE');
+                //$(opponentFirstCardDiv).children('div').first().toggleClass('cardfront cardback');
+                //$(playerFirstCardDiv).children('div').first().toggleClass('cardfront cardback');
+
+                //$('#opponentCards').append( opponentFirstCardDiv );
+                //$('#opponentCards').append( playerFirstCardDiv );
+
+                $(opponentCardsDivId).append( opponentFirstCardDiv );
+                $(opponentCardsDivId).append( playerFirstCardDiv );
+
+                //opponentStack.addCard(playerCard);
+                //opponentStack.addCard(opponentCard);
+                opponentStack.combine(opponentWarStack);
+                opponentStack.combine(playerWarStack);
+                opponentWarStack.clear();
+                playerWarStack.clear();
+
+                if (DEBUG) console.log('AFTER THE WAR - player won, card stack summary:\n' +
+                                       'opponentStack: '    + opponentStack.toString()    + '\n\n' +
+                                       'opponentWarStack: ' + opponentWarStack.toString() + '\n\n' +
+                                       'playerStack: '      + playerStack.toString()      + '\n\n' +
+                                       'playerWarStack: '   + playerWarStack.toString()
+                                      );
+                break;
+        }
+
+        if (DEBUG) console.log('AFTER BATTLE RECAP: opponent has ['+opponentStack.cardCount()+'] remaining cards, which are: ['+opponentStack.toString()+']\n' +
+                               'AFTER BATTLE RECAP: player has ['+playerStack.cardCount()+'] remaining cards, which are: ['+playerStack.toString()+']'
+                              );
+
+        window.setTimeout(function(){detectEndgame()},1500);
+
+        */
+
+
+        // http://stackoverflow.com/questions/907279/jquery-animate-moving-dom-element-to-new-parent
+
+
+        // jQueryTools TOOLTIP:
+        //
+        // ref: http://jquerytools.org/documentation/tooltip/index.html
+        // ref: http://jquerytools.org/demos/tooltip/custom-effect.htm
+        //
+        //$("#demo img[title]").tooltip({effect: 'bouncy'});
+        //
+    }
+
+
+    function cardComparison(opponentCard, playerCard) {
+
+        //alert('entered cardComparison()');
+
+        // compare the opponent and player cards to determine whose is higher (or if they are equal)
+        var compared = opponentCard.compareTo(playerCard);
+
+        //alert('compared: ['+compared+']');
+
+        //var opponentFirstCardDiv = $(opponentCardsDivId).children('div').first().remove();
+        //if (DEBUG) console.log('opponentFirstCardDiv: \n\n' + opponentFirstCardDiv.html());
+
+        //var playerFirstCardDiv = $(playerCardsDivId).children('div').first().remove();
+        //if (DEBUG) console.log('playerFirstCardDiv: \n\n' + playerFirstCardDiv.html());
+
+        alert('inside cardComparison\n\n' +
+              'opponentCard: ['+opponentCard.toString()+']\n' +
+              'playerCard: ['+playerCard.toString()+']\n' +
+              'compared: ['+compared+']\n\n'
+              //+
+              //'opponentFirstCardDiv: \n' +opponentFirstCardDiv.html() + '\n\n' +
+              //'playerFirstCardDiv: \n' +playerFirstCardDiv.html() + '\n\n'
+             );
+
+        // get the HTML of all existing card divs on opponent and player battlefields
+        var opponentBattleCardDivs = $(opponentBattlefieldDivId).html();
+        var playerBattleCardDivs   = $(playerBattlefieldDivId).html();
+
+
+        switch (compared) {
+            case -1 :
+                /*
+                //alert('BATTLE: player wins!');
+                if (DEBUG) console.log('BATTLE: compared: ['+compared+'] opponent card ['+opponentCard.toString()+'], player card ['+playerCard.toString()+'], PLAYER WIN');
+
+                alert('opponentBattlefieldDivId: ' + opponentBattlefieldDivId + '\n\n' +
+                      '$(opponentBattlefieldDivId).html(): ' + $(opponentBattlefieldDivId).html() + '\n\n' +
+                      '$(opponentBattlefieldDivId).children().html(): ' + $(opponentBattlefieldDivId).children().html() + '\n\n' +
+                      '$(opponentBattlefieldDivId).children(\'div\').html(): ' + $(opponentBattlefieldDivId).children('div').html() + '\n\n' +
+                      '$(opponentBattlefieldDivId).contents().html(): ' + $(opponentBattlefieldDivId).contents().html() + '\n\n'
+                      //'$(opponentBattlefieldDivId).children().all().html(): ' + $(opponentBattlefieldDivId).children().all().html() + '\n\n'
+                      //'$(opponentBattlefieldDivId).children().all().html(): ' + $(opponentBattlefieldDivId).children().all().html()
+                     );
+
+                //var opponentBattleCardDivs = $(opponentBattlefieldDivId).children('div').all().remove();
+                //var opponentBattleCardDivs = $(opponentBattlefieldDivId).html().remove();
+                var opponentBattleCardDivs = $(opponentBattlefieldDivId).html();
+
+                //var playerBattleCardDivs = $(playerBattlefieldDivId).children('div').all().remove();
+                //var playerBattleCardDivs = $(playerBattlefieldDivId).html().remove();
+                var playerBattleCardDivs = $(playerBattlefieldDivId).html();
+
+                //alert('opponentBattleCardDivs: \n\n' + opponentBattleCardDivs + '\n\n' + 'playerBattleCardDivs: \n\n' + playerBattleCardDivs );
+
+                alert('PLAYER WINS BATTLE - card divs to be added to player:\n\n' +
+                      'opponentBattleCardDivs:\n' + opponentBattleCardDivs + '\n\n' +
+                      'playerBattleCardDivs:\n' + playerBattleCardDivs
+                    );
+
+                // add all the cards won to the player's stack
+                //$(playerCardsDivId).append( opponentFirstCardDiv );
+                //$(playerCardsDivId).append( playerFirstCardDiv );
+                $(playerCardsDivId).append( opponentBattleCardDivs );
+                $(playerCardsDivId).append( playerBattleCardDivs );
+
+                //$(opponentBattlefieldDivId).children('div').all().remove();
+                //$(playerBattlefieldDivId).children('div').all().remove();
+
+                $(opponentBattlefieldDivId).html('');
+                $(playerBattlefieldDivId).html('');
+
+                // add all the cards to the player's stack
+                playerStack.combine(opponentWarStack);
+                playerStack.combine(playerWarStack);
+
+                // battle over, remove cards from both player and opponent war stacks
+                opponentWarStack.clear();
+                playerWarStack.clear();
+                */
+
+
+                // get the HTML of all existing card divs on opponent and player battlefields
+                //var opponentBattleCardDivs = $(opponentBattlefieldDivId).html();
+                //var playerBattleCardDivs   = $(playerBattlefieldDivId).html();
+
+                // give the player all the cards that they won
+                $(playerCardsDivId).append( opponentBattleCardDivs );
+                $(playerCardsDivId).append( playerBattleCardDivs );
+
+                // blank out the opponent and player card battlefields so the next battle can commence
+                //$(opponentBattlefieldDivId).html('');
+                //$(playerBattlefieldDivId).html('');
+
+                // add all the cards to the opponent's stack
+                opponentStack.combine(opponentWarStack);
+                opponentStack.combine(playerWarStack);
+
+                // battle over, remove cards from both player and opponent war stacks
+                //opponentWarStack.clear();
+                //playerWarStack.clear();
+
+                /*
+                if (DEBUG) console.log('POST-BATTLE CARD STACKS REPORT - player won, card stack summary:\n' +
+                                       'opponentStack: '    + opponentStack.toString()    + '\n' +
+                                       'opponentWarStack: ' + opponentWarStack.toString() + '\n' +
+                                       'playerStack: '      + playerStack.toString()      + '\n' +
+                                       'playerWarStack: '   + playerWarStack.toString()
+                                      );
+                */
+                //if (DEBUG) cardStacksReport();
+
+                break;
+            // battle was a DRAW
+            case 0 :
+                //alert('BATTLE: draw!');
+                if (DEBUG) console.log('BATTLE: compared: ['+compared+'] opponent card ['+opponentCard.toString()+'], player card ['+playerCard.toString()+'], DRAW, calling war()');
+                war();
+                break;
+            // opponent wins
+            case 1 :
+                if (DEBUG) console.log('BATTLE: compared: ['+compared+'] opponent card ['+opponentCard.toString()+'], player card ['+playerCard.toString()+'], OPPONENT WIN');
+
+                // give the opponent all the cards that they won
+                $(opponentCardsDivId).append( opponentBattleCardDivs );
+                $(opponentCardsDivId).append( playerBattleCardDivs );
+
+                // blank out the opponent and player card battlefields so the next battle can commence
+                //$(opponentBattlefieldDivId).html('');
+                //$(playerBattlefieldDivId).html('');
+
+                // add all the cards to the opponent's stack
+                opponentStack.combine(opponentWarStack);
+                opponentStack.combine(playerWarStack);
+
+                // battle over, remove cards from both player and opponent war stacks
+                //opponentWarStack.clear();
+                //playerWarStack.clear();
+
+                //if (DEBUG) cardStackReport();
+                /*
+                console.log('POST-BATTLE CARD STACKS REPORT - opponent won, card stack summary:\n' +
+                                       'opponentStack: '    + opponentStack.toString()    + '\n' +
+                                       'opponentWarStack: ' + opponentWarStack.toString() + '\n' +
+                                       'playerStack: '      + playerStack.toString()      + '\n' +
+                                       'playerWarStack: '   + playerWarStack.toString()
+                                      );
+                */
+                break;
+        }
+
+        // blank out the opponent and player card battlefields so the next battle can commence
+        $(opponentBattlefieldDivId).html('');
+        $(playerBattlefieldDivId).html('');
+
+        // battle over, remove cards from both player and opponent war stacks
+        opponentWarStack.clear();
+        playerWarStack.clear();
+
+        //if (DEBUG) console.log('AFTER BATTLE RECAP: opponent has ['+opponentStack.cardCount()+'] remaining cards, which are: ['+opponentStack.toString()+']\n' +
+        //                       'AFTER BATTLE RECAP: player has ['+playerStack.cardCount()+'] remaining cards, which are: ['+playerStack.toString()+']'
+        //                      );
+        if (DEBUG) cardStacksReport();
+
+        window.setTimeout(function(){detectEndgame();},1500);
+    }
+
+    function cardStackReport() {
+        console.log('CARD STACKS REPORT:' +
+                    '\n\topponentStack: '             + opponentStack.toString()    +
+                    '\n\topponentStack.cardCount(): ' + opponentStack.cardCount()   +
+                    '\n\topponentWarStack: '          + opponentWarStack.toString() +
+                    '\n\tplayerStack: '               + playerStack.toString()      +
+                    '\n\tplayerStack.cardCount(): '   + playerStack.cardCount()     +
+                    '\n\tplayerWarStack: '            + playerWarStack.toString()
+        );
+    }
+
+
+    // draw out cards for the next battle...
+    $(battleButtonId).click(function(){
+        drawCards();
+    });
+
+    // start a new game - clears the board, draws new random cards, etc.
+    $(newGameButtonId).click(function(){
+        alert('Starting up a new game...');
+        window.setTimeout(function(){newGame();},2000);
+    });
+
+});
+
+//]]>
+</script>
+
+</head>
+<body>
+
+    <header>
+        <h2>WAR : The Card Game</h2>
+        <p>This is a JavaScript and <a href="http://jquery.com/" target="_blank">jQuery</a> implementation of the
+            classic child's card game, War.  I wrote it to follow the basic rules of the game as written
+            <a href="http://www.pagat.com/war/war.html" target="_blank">here</a> (following the <i></i>"War for two players"</i> rules, using draw variation 1).</p>
+    </header>
+
+    <!-- Opponent's area -->
+    <div id="opponent" class="playingField">
+        <div class="textBox name">Opponent's Cards</div>
+        <div id="opponentCards" class="cardArea"></div>
+    </div>
+
+    <!-- Battlefield area -->
+    <div id="battlefield" class="playingField">
+        <div class="textBox name">Battlefield</div>
+        <div id="battlefieldCards" class="cardArea">
+            <div id="opponentBattlefield"></div>
+            <div id="playerBattlefield"></div>
+        </div>
+    </div>
+
+    <!-- Main player's area -->
+    <div id="player" class="playingField">
+        <div class="textBox name">Your Cards</div>
+        <div id="playerCards" class="cardArea"></div>
+    </div>
+
+    <!-- Game buttons -->
+    <form id="controls" action="">
+        <div id="controlsArea">
+            <input id="battleButton"  class="button" type="reset" value="Battle"   />
+            <input id="newGameButton" class="button" type="reset" value="New Game" />
+            <br />
+        </div>
+    </form>
+
+</body>
+</html>
