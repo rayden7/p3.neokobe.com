@@ -244,21 +244,28 @@ $(document).ready(function() {
     var DEBUG = false;
     if ( window.location.href.indexOf("DEBUG=1") > 0) {
         DEBUG = true;
+        $('#enableDebugging').hide();
+        $('#disableDebugging').show();
         if (DEBUG) alert ('Turning on debugging - check the console log for debugging information.');
     }
+    // debugging turned off
+    else {
+        $('#enableDebugging').show();
+        $('#disableDebugging').hide();
+    }
 
-    var numPacks      =    1;
+    var numPacks      =    1;  // use one standard pack of 52 cards
     var numShuffles   =   10;
-    //var dealTimeDelay =  750;
 
     // Globals
     var deck;
     var opponent;
     var player;
     var playerStack, opponentStack, playerWarStack, opponentWarStack;
-    //var numCardsPerPlayer = 26;
+    var numCardsPerPlayer = 1;
+    //var numCardsPerPlayer = 4;
     //var numCardsPerPlayer = 2;
-    var numCardsPerPlayer = 4;
+    //var numCardsPerPlayer = 26;
 
     // HTML element ID names
     var playerCardsDivId         = "#playerCards";
@@ -309,6 +316,9 @@ $(document).ready(function() {
             $(opponentCardsDivId).append( card.createNode() );
         });
 
+        // turn on the Battle button so the player can play the game
+        $(battleButtonId).removeAttr("disabled");
+
         if (DEBUG) {
             console.log('Your opponent was dealt these cards: \n\n' + opponentCardStrings);
             console.log('You were dealt these cards: \n\n' + playerCardStrings);
@@ -316,16 +326,31 @@ $(document).ready(function() {
         }
     }
 
-    // remove all cards from the board, and then start a new game
+    // clean up the current game and start a new one
     function newGame() {
-        if (DEBUG) console.log('inside newGame(), removing cards from board...');
+        if (DEBUG) console.log('inside newGame(), calling clearGame() to clean things up...');
+        clearGame();
+        if (DEBUG) console.log('about to wait a bit before starting the next game...');
+        window.setTimeout(function(){ initGame(); },1500);
+    }
+
+
+    // remove all cards from all boards, remove all cards from stacks,
+    // disable "Battle" button (since no game can be active once everything is cleared)
+    function clearGame() {
+        if (DEBUG) console.log('inside clearGame(), removing cards from board, clearing stacks, and disabling the Battle button...');
         $(opponentCardsDivId).children().remove();
         $(opponentBattlefieldDivId).children().remove();
         $(playerBattlefieldDivId).children().remove();
         $(playerCardsDivId).children().remove();
-        //if (DEBUG) console.log('about to wait a bit before starting the next game...');
-        //window.setTimeout(function(){initGame()},1500);
-        initGame();
+
+        playerStack.clear();
+        opponentStack.clear();
+        playerWarStack.clear();
+        opponentWarStack.clear();
+
+        // disable the Battle button since it is only applicable when a game is being played
+        $(battleButtonId).attr("disabled", "disabled");
     }
 
 
@@ -401,7 +426,15 @@ $(document).ready(function() {
         // game is over, so show the appropriate message and if the player wants to play again, start a new game
         if (message.length > 0) {
             var playAgain = window.confirm(message);
-            if (playAgain) newGame();
+            //
+            if (playAgain) {
+                newGame();
+            }
+            // clean up the board
+            else {
+
+
+            }
         }
     }
 
@@ -506,7 +539,7 @@ $(document).ready(function() {
     function drawCards() {
 
         //detectEndgame();
-        window.setTimeout(function(){detectEndgame();},1500);
+        //window.setTimeout(function(){detectEndgame();},1500);
 
         // get the opponent's first card and the player's first card
         if (DEBUG) console.log('just clicked BATTLE button...\n\n' +
@@ -823,7 +856,7 @@ $(document).ready(function() {
     // start a new game - clears the board, draws new random cards, etc.
     $(newGameButtonId).click(function(){
         alert('Starting up a new game...');
-        window.setTimeout(function(){newGame();},2000);
+        newGame();
     });
 
 });
@@ -842,19 +875,13 @@ $(document).ready(function() {
         <p>JavaScript libraries used in this project include:
             <ul>
                 <li><a href="http://jquery.org" target="_blank">jQuery</a></li>
-                <!--
-                I was going to make more extensive use of these libraries, but
-                I ran out of time and did not find a use for them before the deadline
-                -->
-                <!--
-                <li><a href="http://jquerytools.org/" target="_blank">jQuery Tools</a></li>
-                <li><a href="http://jqueryui.com/" target="_blank">jQuery UI</a></li>
-                -->
                 <li><a href="http://underscorejs.org/" target="_blank">Underscore.js</a></li>
                 <li><a href="http://handlebarsjs.com/" target="_blank">Handlebars.js</a></li>
                 <li><a href="http://www.brainjar.com/js/cards/" target="_blank">Brainjar's JavaScript Card Objects (modified)</a></li>
             </ul>
         </p>
+        <p id="enableDebugging">Click <a href="http://p3.neokobe.com/?DEBUG=1">here</a> to play with debugging turned <b><i>ON</i></b>.</p>
+        <p id="disableDebugging">Click <a href="http://p3.neokobe.com/">here</a> to play with debugging turned <b><i>OFF</i></b>.</p>
     </header>
 
     <!-- Opponent's area -->
