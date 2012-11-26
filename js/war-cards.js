@@ -139,6 +139,8 @@ function cardCreateNode() {
             break;
      }
 
+    // use Handlebars.js to build out the HTML for the card based on the card's rank template
+
     // this is the script identifier of the template to use based on this card's rank
     var templateID = "#card-template-" + this.rank;
 
