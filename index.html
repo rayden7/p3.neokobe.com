@@ -4,11 +4,6 @@
 <title>CSCI-E 75: PS3 - WAR, The Card Game You Played As A Kid</title>
 <link rel="stylesheet" type="text/css" href="css/war-cards.css" />
 <script type="text/javascript" src="js/jquery.min.js"></script>
-<!--
-<script type="text/javascript" src="js/jquery.tools.min.js"></script>
-<script type="text/javascript" src="js/jquery-ui.min.js"></script>
--->
-
 <script type="text/javascript" src="js/underscore-min.js"></script>
 <script type="text/javascript" src="js/handlebars-1.0.rc.1.js"></script>
 <script type="text/javascript" src="js/war-cards.js"></script>
@@ -563,9 +558,11 @@ $(document).ready(function() {
             var playerCardFacedownDiv   = $(playerCardsDivId).children('div').first().remove();
 
             $(opponentCardFacedownDiv).children('div').first().toggleClass('cardfront cardback');
+            //$(opponentCardFacedownDiv).children('div').first().toggleClass('cardback cardfront');
             $(opponentBattlefieldDivId).append( opponentCardFacedownDiv );
 
             $(playerCardFacedownDiv).children('div').first().toggleClass('cardfront cardback');
+            //$(playerCardFacedownDiv).children('div').first().toggleClass('cardback cardfront');
             $(playerBattlefieldDivId).append( playerCardFacedownDiv );
 
             // get the opponent's first card and the player's first card
@@ -671,28 +668,20 @@ $(document).ready(function() {
                 }
                 alert('PLAYER WINS - adding all the cards on the battlefield to the player\'s stack...');
 
-
-                alert('BEFORE FLIPPING CARDS FACE-DOWN:\n\n' +
-                      'opponentBattleCardDivs: \n\n' + opponentBattleCardDivs + '\n\n' +
-                      'playerBattleCardDivs: \n\n' + playerBattleCardDivs + '\n\n'
-                );
-
-                // flip all the cards the won from face-up to face-down
-                //$(opponentBattleCardDivs).all().toggleClass('cardback cardfront');
-                //$(playerBattleCardDivs).all().toggleClass('cardback cardfront');
-                $(opponentBattleCardDivs).toggleClass('cardback cardfront');
-                $(playerBattleCardDivs).toggleClass('cardback cardfront');
-
-                alert('AFTER FLIPPING CARDS FACE-DOWN:\n\n' +
-                        'opponentBattleCardDivs: \n\n' + opponentBattleCardDivs + '\n\n' +
-                        'playerBattleCardDivs: \n\n' + playerBattleCardDivs + '\n\n'
-                );
-
-
+                // flip all of the cards on the battlefield over to face-down
+                $(opponentBattlefieldDivId).children('div').children('div').each(function(){
+                    $(this).removeClass('cardfront').addClass('cardback');
+                });
+                $(playerBattlefieldDivId).children('div').children('div').each(function(){
+                    $(this).removeClass('cardfront').addClass('cardback');
+                });
+                opponentBattleCardDivs = $(opponentBattlefieldDivId).html();
+                playerBattleCardDivs = $(playerBattlefieldDivId).html();
 
                 // give the player all the cards that they won
                 $(playerCardsDivId).append( opponentBattleCardDivs );
                 $(playerCardsDivId).append( playerBattleCardDivs );
+
                 // add all the battlefield cards to the player's stack
                 playerStack.combine(opponentWarStack);
                 playerStack.combine(playerWarStack);
@@ -727,27 +716,20 @@ $(document).ready(function() {
                 }
                 alert('OPPONENT WINS - adding all the cards on the battlefield to the opponent\'s stack...');
 
-
-                alert('BEFORE FLIPPING CARDS FACE-DOWN:\n\n' +
-                        'opponentBattleCardDivs: \n\n' + opponentBattleCardDivs + '\n\n' +
-                        'playerBattleCardDivs: \n\n' + playerBattleCardDivs + '\n\n'
-                );
-
-                // flip all the cards the won from face-up to face-down
-                //$(opponentBattleCardDivs).all().toggleClass('cardback cardfront');
-                //$(playerBattleCardDivs).all().toggleClass('cardback cardfront');
-                $(opponentBattleCardDivs).toggleClass('cardback cardfront');
-                $(playerBattleCardDivs).toggleClass('cardback cardfront');
-
-                alert('AFTER FLIPPING CARDS FACE-DOWN:\n\n' +
-                        'opponentBattleCardDivs: \n\n' + opponentBattleCardDivs + '\n\n' +
-                        'playerBattleCardDivs: \n\n' + playerBattleCardDivs + '\n\n'
-                );
-
+                // flip all of the cards on the battlefield over to face-down
+                $(opponentBattlefieldDivId).children('div').children('div').each(function(){
+                    $(this).removeClass('cardfront').addClass('cardback');
+                });
+                $(playerBattlefieldDivId).children('div').children('div').each(function(){
+                    $(this).removeClass('cardfront').addClass('cardback');
+                });
+                opponentBattleCardDivs = $(opponentBattlefieldDivId).html();
+                playerBattleCardDivs = $(playerBattlefieldDivId).html();
 
                 // give the opponent all the cards that they won
                 $(opponentCardsDivId).append( opponentBattleCardDivs );
                 $(opponentCardsDivId).append( playerBattleCardDivs );
+
                 // add all the battlefield cards to the opponent's stack
                 opponentStack.combine(opponentWarStack);
                 opponentStack.combine(playerWarStack);
