@@ -22,6 +22,3 @@ Basic templates are defined that correspond to card ranks, but are irrespective 
 the index.html page is loaded and cards are randomly assigned to the player and opponent, the
 Handlebars.js script "templates" are used to define card objects.  For details on how the
 templates are used, see war-cards.js and look in the cardCreateNode() method.
-
-
-
