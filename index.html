@@ -3,15 +3,11 @@
 <head>
 <title>CSCI-E 75: PS3 - WAR, The Card Game You Played As A Kid</title>
 <link rel="stylesheet" type="text/css" href="css/war-cards.css" />
-
-<!--<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>-->
-<!--<script type="text/javascript" src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>-->
-<!--<script type="text/javascript" src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>-->
-
-<!-- see http://code.jquery.com/ for downloadable local copies -->
 <script type="text/javascript" src="js/jquery.min.js"></script>
+<!--
 <script type="text/javascript" src="js/jquery.tools.min.js"></script>
 <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+-->
 
 <script type="text/javascript" src="js/underscore-min.js"></script>
 <script type="text/javascript" src="js/handlebars-1.0.rc.1.js"></script>
@@ -21,8 +17,9 @@
 <script id="card-template-2" type="text/x-handlebars-template">
     <!-- {{cardName}} -->
     <div class="card">
-        <!--<div class="cardback {{cardColor}}">-->
-        <div class="cardfront {{cardColor}}">
+        <div class="cardback {{cardColor}}">
+        <!-- use this style for debugging so cards are face-up: -->
+        <!--<div class="cardfront {{cardColor}}">-->
             <div class="index">{{cardRank}}<br />{{cardSuitSymbol}}</div>
             <div class="spotB2">{{cardSuitSymbol}}</div>
             <div class="spotB4">{{cardSuitSymbol}}</div>
@@ -33,8 +30,9 @@
 <script id="card-template-3" type="text/x-handlebars-template">
     <!-- {{cardName}} -->
     <div class="card">
-        <!--<div class="cardback {{cardColor}}">-->
-        <div class="cardfront {{cardColor}}">
+        <div class="cardback {{cardColor}}">
+        <!-- use this style for debugging so cards are face-up: -->
+        <!--<div class="cardfront {{cardColor}}">-->
             <div class="index">{{cardRank}}<br />{{cardSuitSymbol}}</div>
             <div class="spotA1">{{cardSuitSymbol}}</div>
             <div class="spotB3">{{cardSuitSymbol}}</div>
@@ -46,8 +44,9 @@
 <script id="card-template-4" type="text/x-handlebars-template">
     <!-- {{cardName}} -->
     <div class="card">
-        <!--<div class="cardback {{cardColor}}">-->
-        <div class="cardfront {{cardColor}}">
+        <div class="cardback {{cardColor}}">
+        <!-- use this style for debugging so cards are face-up: -->
+        <!--<div class="cardfront {{cardColor}}">-->
             <div class="index">{{cardRank}}<br />{{cardSuitSymbol}}</div>
             <div class="spotA1">{{cardSuitSymbol}}</div>
             <div class="spotA5">{{cardSuitSymbol}}</div>
@@ -60,8 +59,9 @@
 <script id="card-template-5" type="text/x-handlebars-template">
     <!-- {{cardName}} -->
     <div class="card">
-        <!--<div class="cardback {{cardColor}}">-->
-        <div class="cardfront {{cardColor}}">
+        <div class="cardback {{cardColor}}">
+        <!-- use this style for debugging so cards are face-up: -->
+        <!--<div class="cardfront {{cardColor}}">-->
             <div class="index">{{cardRank}}<br />{{cardSuitSymbol}}</div>
             <div class="spotA1">{{cardSuitSymbol}}</div>
             <div class="spotA5">{{cardSuitSymbol}}</div>
@@ -75,8 +75,9 @@
 <script id="card-template-6" type="text/x-handlebars-template">
     <!-- {{cardName}} -->
     <div class="card">
-        <!--<div class="cardback {{cardColor}}">-->
-        <div class="cardfront {{cardColor}}">
+        <div class="cardback {{cardColor}}">
+        <!-- use this style for debugging so cards are face-up: -->
+        <!--<div class="cardfront {{cardColor}}">-->
             <div class="index">{{cardRank}}<br />{{cardSuitSymbol}}</div>
             <div class="spotA1">{{cardSuitSymbol}}</div>
             <div class="spotA3">{{cardSuitSymbol}}</div>
@@ -91,8 +92,9 @@
 <script id="card-template-7" type="text/x-handlebars-template">
     <!-- {{cardName}} -->
     <div class="card">
-        <!--<div class="cardback {{cardColor}}">-->
-        <div class="cardfront {{cardColor}}">
+        <div class="cardback {{cardColor}}">
+        <!-- use this style for debugging so cards are face-up: -->
+        <!--<div class="cardfront {{cardColor}}">-->
             <div class="index">{{cardRank}}<br />{{cardSuitSymbol}}</div>
             <div class="spotA1">{{cardSuitSymbol}}</div>
             <div class="spotA3">{{cardSuitSymbol}}</div>
@@ -108,8 +110,9 @@
 <script id="card-template-8" type="text/x-handlebars-template">
     <!-- {{cardName}} -->
     <div class="card">
-        <!--<div class="cardback {{cardColor}}">-->
-        <div class="cardfront {{cardColor}}">
+        <div class="cardback {{cardColor}}">
+        <!-- use this style for debugging so cards are face-up: -->
+        <!--<div class="cardfront {{cardColor}}">-->
             <div class="index">{{cardRank}}<br />{{cardSuitSymbol}}</div>
             <div class="spotA1">{{cardSuitSymbol}}</div>
             <div class="spotA2">{{cardSuitSymbol}}</div>
@@ -126,8 +129,9 @@
 <script id="card-template-9" type="text/x-handlebars-template">
     <!-- {{cardName}} -->
     <div class="card">
-        <!--<div class="cardback {{cardColor}}">-->
-        <div class="cardfront {{cardColor}}">
+        <div class="cardback {{cardColor}}">
+        <!-- use this style for debugging so cards are face-up: -->
+        <!--<div class="cardfront {{cardColor}}">-->
             <div class="index">{{cardRank}}<br />{{cardSuitSymbol}}</div>
             <div class="spotA1">{{cardSuitSymbol}}</div>
             <div class="spotA2">{{cardSuitSymbol}}</div>
@@ -145,8 +149,9 @@
 <script id="card-template-10" type="text/x-handlebars-template">
     <!-- {{cardName}} -->
     <div class="card">
-        <!--<div class="cardback {{cardColor}}">-->
-        <div class="cardfront {{cardColor}}">
+        <div class="cardback {{cardColor}}">
+        <!-- use this style for debugging so cards are face-up: -->
+        <!--<div class="cardfront {{cardColor}}">-->
             <div class="index">{{cardRank}}<br />{{cardSuitSymbol}}</div>
             <div class="spotA1">{{cardSuitSymbol}}</div>
             <div class="spotA2">{{cardSuitSymbol}}</div>
@@ -165,8 +170,9 @@
 <script id="card-template-J" type="text/x-handlebars-template">
     <!-- {{cardName}} -->
     <div class="card">
-        <!--<div class="cardback {{cardColor}}">-->
-        <div class="cardfront {{cardColor}}">
+        <div class="cardback {{cardColor}}">
+        <!-- use this style for debugging so cards are face-up: -->
+        <!--<div class="cardfront {{cardColor}}">-->
             <div class="index">{{cardRank}}<br />{{cardSuitSymbol}}</div>
             <img class="face" src="graphics/jack.gif" alt="{{cardName}}" />
             <div class="spotA1">{{cardSuitSymbol}}</div>
@@ -178,8 +184,9 @@
 <script id="card-template-Q" type="text/x-handlebars-template">
     <!-- {{cardName}} -->
     <div class="card">
-        <!--<div class="cardback {{cardColor}}">-->
-        <div class="cardfront {{cardColor}}">
+        <div class="cardback {{cardColor}}">
+        <!-- use this style for debugging so cards are face-up: -->
+        <!--<div class="cardfront {{cardColor}}">-->
             <div class="index">{{cardRank}}<br />{{cardSuitSymbol}}</div>
             <img class="face" src="graphics/queen.gif" alt="{{cardName}}" />
             <div class="spotA1">{{cardSuitSymbol}}</div>
@@ -191,8 +198,9 @@
 <script id="card-template-K" type="text/x-handlebars-template">
     <!-- {{cardName}} -->
     <div class="card">
-        <!--<div class="cardback {{cardColor}}">-->
-        <div class="cardfront {{cardColor}}">
+        <div class="cardback {{cardColor}}">
+        <!-- use this style for debugging so cards are face-up: -->
+        <!--<div class="cardfront {{cardColor}}">-->
             <div class="index">{{cardRank}}<br />{{cardSuitSymbol}}</div>
             <img class="face" src="graphics/king.gif" alt="{{cardName}}" />
             <div class="spotA1">{{cardSuitSymbol}}</div>
@@ -204,8 +212,9 @@
 <script id="card-template-A" type="text/x-handlebars-template">
     <!-- {{cardName}} -->
     <div class="card">
-        <!--<div class="cardback {{cardColor}}">-->
-        <div class="cardfront {{cardColor}}">
+        <div class="cardback {{cardColor}}">
+        <!-- use this style for debugging so cards are face-up: -->
+        <!--<div class="cardfront {{cardColor}}">-->
             <div class="index">{{cardRank}}<br />{{cardSuitSymbol}}</div>
             <div class="spotB3 aceicon">{{cardSuitSymbol}}</div>
         </div>
@@ -225,18 +234,16 @@
 // have enough cards to complete the war, [that player will] lose"
 // ============================================================================
 
-
+// TODO: update the card display on the battlefield to initially show the cards
+// face down, wait a short delay, and then use a CSS/JavaScript card flipping
+// animation that turns them face-up
 //
-// CSS card flipping animation:
-//     http://css3.bradshawenterprises.com/flip/
+// References:
 //
-// jQuery card flipping animation flassback:
-//     http://lab.smashup.it/flip
+//   CSS card flipping animation:  http://css3.bradshawenterprises.com/flip/
+//   jQuery card flipping animation flassback:  http://lab.smashup.it/flip
+//   Another CSS flipping animation:  http://davidwalsh.name/css-flip
 //
-// http://davidwalsh.name/css-flip
-//
-
-
 
 $(document).ready(function() {
 
@@ -254,13 +261,15 @@ $(document).ready(function() {
         $('#disableDebugging').hide();
     }
 
-    var numPacks      =    1;  // use one standard pack of 52 cards
-    var numShuffles   =   10;
 
     // Globals
     var deck;
     var opponent;
     var player;
+    var numPacks      =    1;  // use one standard pack of 52 cards
+    var numShuffles   =   10;  // and shuffle the deck X times
+
+    // track card stacks for the player and opponent, and the stacks that are on the battleground area
     var playerStack, opponentStack, playerWarStack, opponentWarStack;
 
     // this is used to insert a brief delay between drawing/comparing cards
@@ -269,11 +278,15 @@ $(document).ready(function() {
     // against itself  :-)
     var millisecondOperationDelay = 750;
 
+    // tracks what operations are waiting to be called by setTimeout()
+    // (and used so any existing timed operations can be cleared out when the game ends)
+    var delayOperation;
+
     //var numCardsPerPlayer = 1;
-    var numCardsPerPlayer = 3;
+    //var numCardsPerPlayer = 3;
     //var numCardsPerPlayer = 4;
     //var numCardsPerPlayer = 2;
-    //var numCardsPerPlayer = 26;
+    var numCardsPerPlayer = 26;
 
     // HTML element ID names
     var playerCardsDivId         = "#playerCards";
@@ -326,7 +339,6 @@ $(document).ready(function() {
 
         // turn on the Battle button so the player can play the game
         $(battleButtonId).removeAttr("disabled");
-        //battleButtonToggle();
 
         if (DEBUG) {
             console.log('Your opponent was dealt these cards: \n\n' + opponentCardStrings);
@@ -340,7 +352,7 @@ $(document).ready(function() {
         if (DEBUG) console.log('inside newGame(), calling clearGame() to clean things up...');
         clearGame();
         if (DEBUG) console.log('about to wait a bit before starting the next game...');
-        window.setTimeout(function(){ initGame(); }, millisecondOperationDelay);
+        delayOperation = window.setTimeout(function(){ initGame(); }, millisecondOperationDelay);
     }
 
 
@@ -360,23 +372,10 @@ $(document).ready(function() {
 
         // disable the Battle button since it is only applicable when a game is being played
         $(battleButtonId).attr("disabled", "disabled");
-        //battleButtonToggle();
 
+        // clear any remaining timed operations
+        window.clearTimeout(delayOperation);
     }
-
-    /*
-    // used to toggle the battle button from enabled to disabled (we want to
-    // disable it after it is clicked and when using it would be inappropriate)
-    function battleButtonToggle() {
-
-        //var isDisabled = $(battleButtonId).attr("disabled");
-        //alert('called battleButtonToggle()... button current state is: ' + isDisabled);
-
-        if ($(battleButtonId).attr("disabled")) $(battleButtonId).removeAttr("disabled");
-        else $(battleButtonId).attr("disabled", "disabled");
-    }
-    */
-
 
 
     // ----------------------------------------------------------------------------
@@ -470,15 +469,12 @@ $(document).ready(function() {
     }
 
 
+    // determine if the game is over, and display an appropriate message or confirmation if needed
     function detectEndgame() {
 
         cardStackReport();
 
         var message = "";
-
-
-        //// DO NOT execute endgame detection if there are NO CARDS in any of the stacks
-        //if ( opponentStack.cardCount() > 0 || playerStack.cardCount() > 0 || opponentWarStack.cardCount() > 0 || playerWarStack.cardCount() > 0) {
 
         // PLAYER WINS
         if ( opponentStack.cardCount() == 0 && playerStack.cardCount() >= (numCardsPerPlayer * 2) )
@@ -503,15 +499,12 @@ $(document).ready(function() {
             else clearGame();
 
         }
-
-        //}
-
     }
 
 
-
     /**
-     * In a war, the player and opponent both drew cards of equal rank, and so to determine who the winner is,
+     * In a war, the player and opponent both drew cards of equal rank, and so to
+     * determine who the winner is, or, if still tied, continue to draw more cards
      */
     function war() {
 
@@ -521,23 +514,18 @@ $(document).ready(function() {
                         'called war(), need to determine how the war goes based on how many cards each party has\n\n' +
                         'opponentStack.cardCount(): ['+opponentStack.cardCount()+']\n' +
                         'playerStack.cardCount(): ['+playerStack.cardCount()+']');
+            alert('Battle tied, inside war()...  need to determine how the war goes based on how many cards each party has\n\n' +
+                    'opponentStack.cardCount(): ['+opponentStack.cardCount()+']\n' +
+                    'opponentBattleStack.cardCount(): ['+opponentWarStack.cardCount()+']\n' +
+                    'playerStack.cardCount(): ['+playerStack.cardCount()+']\n' +
+                    'playerBattleStack.cardCount(): ['+playerWarStack.cardCount()+']\n'
+            );
         }
 
         //
         // this version of the War card game follows the rules of War for 2 players
         // using the first variant specified here: http://www.pagat.com/war/war.html#two
         //
-
-
-
-
-        alert('Battle tied, inside war()...  need to determine how the war goes based on how many cards each party has\n\n' +
-              'opponentStack.cardCount(): ['+opponentStack.cardCount()+']\n' +
-              'opponentBattleStack.cardCount(): ['+opponentWarStack.cardCount()+']\n' +
-              'playerStack.cardCount(): ['+playerStack.cardCount()+']\n' +
-              'playerBattleStack.cardCount(): ['+playerWarStack.cardCount()+']\n'
-             );
-
 
         /////// DETERMINE IF EITHER PARTY DOES NOT HAVE ENOUGH CARDS TO CONTINUE THE WAR, OR IF THERE IS A DRAW ///////
 
@@ -574,7 +562,6 @@ $(document).ready(function() {
             var opponentCardFacedownDiv = $(opponentCardsDivId).children('div').first().remove();
             var playerCardFacedownDiv   = $(playerCardsDivId).children('div').first().remove();
 
-
             $(opponentCardFacedownDiv).children('div').first().toggleClass('cardfront cardback');
             $(opponentBattlefieldDivId).append( opponentCardFacedownDiv );
 
@@ -589,7 +576,8 @@ $(document).ready(function() {
                                    'next calling drawCards() again...'
                                   );
 
-            window.setTimeout(function(){ drawCards(); }, millisecondOperationDelay);
+            //window.setTimeout(function(){ drawCards(); }, millisecondOperationDelay);
+            delayOperation = window.setTimeout(function(){ drawCards(); }, millisecondOperationDelay);
         }
         //
         else if ( playerStack.cardCount() >= 2 && opponentStack.cardCount() <= 2) {
@@ -612,14 +600,10 @@ $(document).ready(function() {
                                    'NEITHER player nor opponent has enough cards to continue the war - GAME ENDS IN A DRAW'
                                   );
         }
-
-        //detectEndgame();
     }
 
 
     function drawCards() {
-
-        //detectEndgame();
 
         // get the opponent's first card and the player's first card
         if (DEBUG) console.log('just clicked BATTLE button...\n\n' +
@@ -634,7 +618,6 @@ $(document).ready(function() {
         opponentWarStack.addCard(opponentCard);
         playerWarStack.addCard(playerCard);
 
-
         // get the opponent's first card and the player's first card
         if (DEBUG) console.log('first opponent card drawn: [' + opponentCard.toString() +']\n' +
                                'first player card drawn: ['+playerCard.toString() +']');
@@ -644,20 +627,20 @@ $(document).ready(function() {
         //var opponentFirstCardDiv = $('#opponentCards').children('div').first().remove();
         var opponentFirstCardDiv = $(opponentCardsDivId).children('div').first().remove();
         if (DEBUG) console.log('opponentFirstCardDiv: \n\n' + opponentFirstCardDiv.html());
-        //$(opponentFirstCardDiv).children('div').first().toggleClass('cardback cardfront');
-        //if (DEBUG) alert('opponentFirstCardDiv after class toggle: \n\n' + opponentFirstCardDiv.html());
-        //$('#opponentBattlefield').append( opponentFirstCardDiv );
+
+        $(opponentFirstCardDiv).children('div').first().toggleClass('cardback cardfront');
+
         $(opponentBattlefieldDivId).append( opponentFirstCardDiv );
 
         //var playerFirstCardDiv = $('#playerCards').children('div').first().remove();
         var playerFirstCardDiv = $(playerCardsDivId).children('div').first().remove();
         if (DEBUG) console.log('playerFirstCardDiv: \n\n' + playerFirstCardDiv.html());
-        //$(playerFirstCardDiv).children('div').first().toggleClass('cardback cardfront');
-        //if (DEBUG) alert('opponentFirstCardDiv after class toggle: \n\n' + opponentFirstCardDiv.html());
-        //$('#playerBattlefield').append( playerFirstCardDiv );
+
+        $(playerFirstCardDiv).children('div').first().toggleClass('cardback cardfront');
+
         $(playerBattlefieldDivId).append( playerFirstCardDiv );
 
-        window.setTimeout(function(){ cardComparison(opponentCard, playerCard); }, millisecondOperationDelay);
+        delayOperation = window.setTimeout(function(){ cardComparison(opponentCard, playerCard); }, millisecondOperationDelay);
     }
 
 
@@ -665,8 +648,7 @@ $(document).ready(function() {
         // compare the opponent and player cards to determine whose is higher (or if they are equal)
         var compared = opponentCard.compareTo(playerCard);
 
-        ////////////////// TODO: create a tooltip, or a notification area and inform the player of the winner //////////
-
+        //// TODO: create a tooltip, or a notification area and inform the player of the winner, rather than using window.alert()
 
         if (DEBUG) console.log('inside cardComparison\n\n\topponentCard: ['+opponentCard.toString()+']\n\tplayerCard: ['+playerCard.toString()+']\n\tcompared: ['+compared+']\n\n');
 
@@ -688,6 +670,26 @@ $(document).ready(function() {
                                );
                 }
                 alert('PLAYER WINS - adding all the cards on the battlefield to the player\'s stack...');
+
+
+                alert('BEFORE FLIPPING CARDS FACE-DOWN:\n\n' +
+                      'opponentBattleCardDivs: \n\n' + opponentBattleCardDivs + '\n\n' +
+                      'playerBattleCardDivs: \n\n' + playerBattleCardDivs + '\n\n'
+                );
+
+                // flip all the cards the won from face-up to face-down
+                //$(opponentBattleCardDivs).all().toggleClass('cardback cardfront');
+                //$(playerBattleCardDivs).all().toggleClass('cardback cardfront');
+                $(opponentBattleCardDivs).toggleClass('cardback cardfront');
+                $(playerBattleCardDivs).toggleClass('cardback cardfront');
+
+                alert('AFTER FLIPPING CARDS FACE-DOWN:\n\n' +
+                        'opponentBattleCardDivs: \n\n' + opponentBattleCardDivs + '\n\n' +
+                        'playerBattleCardDivs: \n\n' + playerBattleCardDivs + '\n\n'
+                );
+
+
+
                 // give the player all the cards that they won
                 $(playerCardsDivId).append( opponentBattleCardDivs );
                 $(playerCardsDivId).append( playerBattleCardDivs );
@@ -724,6 +726,25 @@ $(document).ready(function() {
                     );
                 }
                 alert('OPPONENT WINS - adding all the cards on the battlefield to the opponent\'s stack...');
+
+
+                alert('BEFORE FLIPPING CARDS FACE-DOWN:\n\n' +
+                        'opponentBattleCardDivs: \n\n' + opponentBattleCardDivs + '\n\n' +
+                        'playerBattleCardDivs: \n\n' + playerBattleCardDivs + '\n\n'
+                );
+
+                // flip all the cards the won from face-up to face-down
+                //$(opponentBattleCardDivs).all().toggleClass('cardback cardfront');
+                //$(playerBattleCardDivs).all().toggleClass('cardback cardfront');
+                $(opponentBattleCardDivs).toggleClass('cardback cardfront');
+                $(playerBattleCardDivs).toggleClass('cardback cardfront');
+
+                alert('AFTER FLIPPING CARDS FACE-DOWN:\n\n' +
+                        'opponentBattleCardDivs: \n\n' + opponentBattleCardDivs + '\n\n' +
+                        'playerBattleCardDivs: \n\n' + playerBattleCardDivs + '\n\n'
+                );
+
+
                 // give the opponent all the cards that they won
                 $(opponentCardsDivId).append( opponentBattleCardDivs );
                 $(opponentCardsDivId).append( playerBattleCardDivs );
@@ -739,20 +760,10 @@ $(document).ready(function() {
                 break;
         }
 
-        /*
-        // blank out the opponent and player card battlefields so the next battle can commence
-        $(opponentBattlefieldDivId).html('');
-        $(playerBattlefieldDivId).html('');
-
-        // battle over, remove cards from both player and opponent war stacks
-        opponentWarStack.clear();
-        playerWarStack.clear();
-        */
-
         if (DEBUG) cardStackReport();
 
         // each time after cards are drawn, check to see if this is an endgame condition
-        window.setTimeout(function(){ detectEndgame(); }, millisecondOperationDelay);
+        delayOperation = window.setTimeout(function(){ detectEndgame(); }, millisecondOperationDelay);
     }
 
 
@@ -770,9 +781,7 @@ $(document).ready(function() {
 
     // draw out cards for the next battle...
     $(battleButtonId).click(function(){
-        //battleButtonToggle();
         drawCards();
-        //battleButtonToggle();
     });
 
     // start a new game - clears the board, draws new random cards, etc.
