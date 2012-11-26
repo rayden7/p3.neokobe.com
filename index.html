@@ -252,10 +252,6 @@ $(document).ready(function() {
     // (and used so any existing timed operations can be cleared out when the game ends)
     var delayOperation;
 
-    //var numCardsPerPlayer = 1;
-    //var numCardsPerPlayer = 3;
-    //var numCardsPerPlayer = 4;
-    //var numCardsPerPlayer = 2;
     var numCardsPerPlayer = 26;
 
     // HTML element ID names
@@ -357,6 +353,7 @@ $(document).ready(function() {
         // use a pre-defined deck so that we can debug "war" conditions, card comparisons, etc.
         if (DEBUG) {
             // uncomment this section to debug a game that is a perfect draw
+            /*
             var debugCards = new Array(
                                         new Card("A","D"),  // first player card
                                         new Card("A","H"),  // first opponent card
@@ -364,7 +361,6 @@ $(document).ready(function() {
                                         new Card("K","H"),  // second opponent card
                                         new Card("Q","D"),  // etc. ...
                                         new Card("Q","H")
-                                        /*
                                         new Card("J","D"),
                                         new Card("J","H"),
                                         new Card("10","D"),
@@ -385,11 +381,10 @@ $(document).ready(function() {
                                         new Card("3","H"),
                                         new Card("2","D"),
                                         new Card("2","H")
-                                        */
                                      );
+            */
 
             // uncomment this section to simulate a game where the player wins every time
-            /*
             var debugCards = new Array(
                     new Card("A","D"),  // first player card
                     new Card("2","C"),  // first opponent card
@@ -403,10 +398,7 @@ $(document).ready(function() {
                     new Card("6","C"),
                     new Card("9","D"),
                     new Card("7","C")
-                    //new Card("8","D"),
-                    //new Card("8","C")
             );
-            */
 
             /*
             // uncomment this section to simulate a game where the opponent wins every time
@@ -483,12 +475,9 @@ $(document).ready(function() {
             console.log('Battle tied, moving to a WAR!\n\n' +
                         'called war(), need to determine how the war goes based on how many cards each party has\n\n' +
                         'opponentStack.cardCount(): ['+opponentStack.cardCount()+']\n' +
-                        'playerStack.cardCount(): ['+playerStack.cardCount()+']');
-            alert('Battle tied, inside war()...  need to determine how the war goes based on how many cards each party has\n\n' +
-                    'opponentStack.cardCount(): ['+opponentStack.cardCount()+']\n' +
-                    'opponentBattleStack.cardCount(): ['+opponentWarStack.cardCount()+']\n' +
-                    'playerStack.cardCount(): ['+playerStack.cardCount()+']\n' +
-                    'playerBattleStack.cardCount(): ['+playerWarStack.cardCount()+']\n'
+                        'opponentBattleStack.cardCount(): ['+opponentWarStack.cardCount()+']\n' +
+                        'playerStack.cardCount(): ['+playerStack.cardCount()+']' +
+                        'playerBattleStack.cardCount(): ['+playerWarStack.cardCount()+']'
             );
         }
 
@@ -502,13 +491,13 @@ $(document).ready(function() {
         // player has at least enough cards to conduct a war, but opponent
         // does not, so the game is over and the player wins
         if ( opponentStack.cardCount() == 0 && playerStack.cardCount() >= 2) {
-            alert('PLAYER WINS GAME: opponent does not have enough cards to continue the war, so opponent loses');
+            alert('PLAYER WINS GAME: opponent does not have enough cards to continue the war');
             detectEndgame();
         }
         // opponent has at least enough cards to conduct a war, but player
         // does not, so the game is over and the opponent wins
         else if ( playerStack.cardCount() == 0 && opponentStack.cardCount() >= 2) {
-            alert('OPPONENT WINS GAME: player does not have enough cards to continue the war, so player loses');
+            alert('OPPONENT WINS GAME: player does not have enough cards to continue the war');
             detectEndgame();
         }
         // DRAW - both player and opponent do not have enough cards to continue - game ends in a draw
@@ -532,12 +521,8 @@ $(document).ready(function() {
             var opponentCardFacedownDiv = $(opponentCardsDivId).children('div').first().remove();
             var playerCardFacedownDiv   = $(playerCardsDivId).children('div').first().remove();
 
-            //$(opponentCardFacedownDiv).children('div').first().toggleClass('cardfront cardback');
-            $(opponentCardFacedownDiv).children('div').first().toggleClass('cardback cardfront');
+            // add these cards to their respective battlefields face-down (as they are when drawn from the original stacks)
             $(opponentBattlefieldDivId).append( opponentCardFacedownDiv );
-
-            //$(playerCardFacedownDiv).children('div').first().toggleClass('cardfront cardback');
-            $(playerCardFacedownDiv).children('div').first().toggleClass('cardback cardfront');
             $(playerBattlefieldDivId).append( playerCardFacedownDiv );
 
             // get the opponent's first card and the player's first card
@@ -548,24 +533,23 @@ $(document).ready(function() {
                                    'next calling drawCards() again...'
                                   );
 
-            //window.setTimeout(function(){ drawCards(); }, millisecondOperationDelay);
             delayOperation = window.setTimeout(function(){ drawCards(); }, millisecondOperationDelay);
         }
-        //
+        // debugging message - PLAYER WINS
         else if ( playerStack.cardCount() >= 2 && opponentStack.cardCount() <= 2) {
             if (DEBUG) console.log('playerStack.cardCount(): [' + playerStack.cardCount() +']\n' +
                                    'opponentStack.cardCount(): [' + opponentStack.cardCount() + ']\n\n' +
                                    'opponent does not have enough cards to continue the war - PLAYER WINS'
                                   );
         }
-        //
+        // debugging message - OPPONENT WINS
         else if ( playerStack.cardCount() <= 2 && opponentStack.cardCount() >= 2) {
             if (DEBUG) console.log('playerStack.cardCount(): [' + playerStack.cardCount() +']\n' +
                                    'opponentStack.cardCount(): [' + opponentStack.cardCount() + ']\n\n' +
                                    'player does not have enough cards to continue the war - OPPONENT WINS'
                                   );
         }
-        //
+        // debugging message - GAME ENDS IN A DRAW
         else if ( playerStack.cardCount() <= 2 && opponentStack.cardCount() <= 2) {
             if (DEBUG) console.log('playerStack.cardCount(): [' + playerStack.cardCount() +']\n' +
                                    'opponentStack.cardCount(): [' + opponentStack.cardCount() + ']\n\n' +
@@ -576,7 +560,6 @@ $(document).ready(function() {
 
 
     function drawCards() {
-
         // get the opponent's first card and the player's first card
         if (DEBUG) console.log('just clicked BATTLE button...\n\n' +
                                'opponentStack has [' + opponentStack.cardCount() +'] cards\n' +
@@ -595,21 +578,15 @@ $(document).ready(function() {
                                'first player card drawn: ['+playerCard.toString() +']');
 
         // WORKS, but would rather animate the card and move it to the middle battlefield
-
-        //var opponentFirstCardDiv = $('#opponentCards').children('div').first().remove();
         var opponentFirstCardDiv = $(opponentCardsDivId).children('div').first().remove();
         if (DEBUG) console.log('opponentFirstCardDiv: \n\n' + opponentFirstCardDiv.html());
-
         $(opponentFirstCardDiv).children('div').first().toggleClass('cardback cardfront');
-
         $(opponentBattlefieldDivId).append( opponentFirstCardDiv );
 
-        //var playerFirstCardDiv = $('#playerCards').children('div').first().remove();
+        // WORKS, but would rather animate the card and move it to the middle battlefield
         var playerFirstCardDiv = $(playerCardsDivId).children('div').first().remove();
         if (DEBUG) console.log('playerFirstCardDiv: \n\n' + playerFirstCardDiv.html());
-
         $(playerFirstCardDiv).children('div').first().toggleClass('cardback cardfront');
-
         $(playerBattlefieldDivId).append( playerFirstCardDiv );
 
         delayOperation = window.setTimeout(function(){ cardComparison(opponentCard, playerCard); }, millisecondOperationDelay);
@@ -627,8 +604,6 @@ $(document).ready(function() {
         // get the HTML of all existing card divs on opponent and player battlefields
         var opponentBattleCardDivs = $(opponentBattlefieldDivId).html();
         var playerBattleCardDivs   = $(playerBattlefieldDivId).html();
-
-        //alert('current values in battle card divs:\n\nopponentBattleCardDivs:\n\n' + $(opponentBattlefieldDivId).html() + '\n\nplayerBattleCardDivs:\n\n' + $(playerBattlefieldDivId).html() );
 
         switch (compared) {
             // PLAYER WINS
@@ -756,7 +731,6 @@ $(document).ready(function() {
 <body>
 
     <header>
-        <!--<h1>WAR : The Card Game</h1>-->
         <h1>WAR, The Card Game You Played As A Little Kid</h1>
         <p>This is a JavaScript and <a href="http://jquery.com/" target="_blank">jQuery</a> implementation of the
             classic child's card game, War.  I wrote it to follow the basic rules of the game as written
@@ -772,6 +746,7 @@ $(document).ready(function() {
         </p>
         <p id="enableDebugging">Click <a href="http://p3.neokobe.com/?DEBUG=1">here</a> to play with debugging turned <b><i>ON</i></b>.</p>
         <p id="disableDebugging">Click <a href="http://p3.neokobe.com/">here</a> to play with debugging turned <b><i>OFF</i></b>.</p>
+        <p>If you know how to turn on your JavaScript console in your browser, you can see some useful debugging output.</p>
     </header>
 
     <!-- Opponent's area -->
